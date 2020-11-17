@@ -5,10 +5,13 @@ sensors to be used:
     * /scan
 - Bumper sensor
     * /mobile_base/events/bumper
-- Cliff sensor
-    * /mobile_base/events/cliff
+
 
 Possibly:
 - Camera data
     * /camera/rgb/image_raw
     * /camera/depth/image_raw
+
+Maybe not:
+- Cliff sensor
+    * /mobile_base/events/cliff
