@@ -36,13 +36,31 @@ Networks as a possible euclidean metric map representation. What we mean by this
 of neuronal networks to identify best possible paths to a goal based on who triggers first. Similar attempts
 have been performed in research/literature before as in _Alamdari[1]_, _bouganis et al._, and _Lobo et al._
 
-#### Executive:
-The executive node will cary out the final action the robot is to take. The robot is programmed to follow a 1
-meter node world where each node can be represented by a single neuron. the robot can only walk a meter at a
-time. The robot also has a module within the node that in every iteration of the clock will check the sensors
-To make sure that there has not been any events that need to be taken care off immediately. if this is the case,
-then the robot takes override mode and performs certains actions before comming back to normal mode (after 
-achieving certain goals for that to happen).
+#### Executive: trikh_executive
+The Executive layer is mainly governed by the coordinating layer. In this layer, the robot will decide what action to take next. The way the robot achieves this is with the following algorithm:
+```
+if there is next node:
+  run to the node
+```
+- next_node is the response from a server from node *trikh_planner* called *next_node*
+- *reactions* will specifically be the situation where the robot is about to bump against an obstacle. There exists 3 ways of reaction:
+ - Turn away.
+  - There is a way to get out
+ - Fly away.
+  - There is a flat wall in front of us.
+ - Stop.
+  - The robot has bumped against something and must stop.
+These reactions will be found in the *trikh_grid_exec* node.
+
+To check for the reactions, the node uses a class called RobotReactive.
+
+##### RobotReactive
+This class takes care of revising the environment for obstacles using a primitive approach: **If robot is bumping or within _offset_ distance from an obstacle, react.**
+
+###### char override()
+The class uses a 3 bit flag called *stimulus* which is a private variable. This function acts as an accesor to the forementioned variable. The strcture of the flags is the following: 1st bit -> bumper, 2nd bit -> obstacle to the left, 3rd bit -> obstacle to the right.
+
+
 
 #### Obstacle-detection:
 For the creating of the world, the robot must be able to detect obstacles before encountering them by the bumper.

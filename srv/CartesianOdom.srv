@@ -1,0 +1,5 @@
+# No requests whatsoever
+---
+# Cartesian Location
+int16 x
+int16 y

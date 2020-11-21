@@ -1,0 +1,8 @@
+# Flags wether we want to move to next or not
+bool repeat
+---
+# next position (x, y)
+int8 x
+int8 y
+# wether there is a next step available
+bool step_available

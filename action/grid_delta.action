@@ -1,0 +1,17 @@
+# goal definition
+
+# The change in the x coordinate.
+# usually -1 -> right and 1 -> left
+int8 delta_x
+
+# The change in the y coordinate.
+# usually -1 -> down and 1 -> up
+int8 delta_y
+
+---
+# result definition
+bool success
+
+---
+# feedback
+geometry_msgs/Pose pose
