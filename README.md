@@ -39,11 +39,8 @@ have been performed in research/literature before as in _Alamdari[1]_, _bouganis
 #### Executive: trikh_executive
 The Executive layer is mainly governed by the coordinating layer. In this layer, the robot will decide what action to take next. The way the robot achieves this is with the following algorithm:
 ```
-if next_node:
-  if no reactions:
-    move to next_node
-  else:
-    react to the specific reaction
+if there is next node:
+  run to the node
 ```
 - next_node is the response from a server from node *trikh_planner* called *next_node*
 - *reactions* will specifically be the situation where the robot is about to bump against an obstacle. There exists 3 ways of reaction:
@@ -53,6 +50,15 @@ if next_node:
   - There is a flat wall in front of us.
  - Stop.
   - The robot has bumped against something and must stop.
+These reactions will be found in the *trikh_grid_exec* node.
+
+To check for the reactions, the node uses a class called RobotReactive.
+
+##### RobotReactive
+This class takes care of revising the environment for obstacles using a primitive approach: **If robot is bumping or within _offset_ distance from an obstacle, react.**
+
+###### char override()
+The class uses a 3 bit flag called *stimulus* which is a private variable. This function acts as an accesor to the forementioned variable. The strcture of the flags is the following: 1st bit -> bumper, 2nd bit -> obstacle to the left, 3rd bit -> obstacle to the right.
 
 
 
