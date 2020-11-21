@@ -8,6 +8,7 @@
             "includePath": [
                 "/opt/ros/kinetic/include/**",
                 "/home/joseaguilar/OU/final-project/src/tour_robot/include/**",
+                "/home/joseaguilar/OU/final-project/devel/include/**",
                 "/usr/include/**"
             ],
             "name": "ROS",
