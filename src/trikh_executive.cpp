@@ -136,6 +136,13 @@ int main(int argc, char **argv)
                 // wait for goal to finish.
                 timeout_flag = grid_exec_ac.waitForResult(ros::Duration(ACTION_TIMEOUT));
 
+                if(timeout_flag)
+                {
+                    // The action for us moving failed to complete
+                    if(DEBUG) ROS_INFO("Action for robot movent timed out.");
+                    return(1);
+                }
+
                 // at this point we should have moved to the new location.
                 if(DEBUG) ROS_INFO("We have a next call.");
             }
