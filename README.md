@@ -74,11 +74,19 @@ Development:
 *November 23 update*
 
 ## Trikh_grid_exec:
-1. [ ] Update to use *grid_deltaAction* action from SetBool.
-2. [ ] Reshape body of main to work as an action
-3. [ ] Implement reactive actions.
-4. [ ] Implement Result-trigging code
-5. [ ] Implement Feedback code. (?)
+1. [x] Update to use *grid_deltaAction* action from SetBool.
+2. [x] Reshape body of main to work as an action
+  * [x] Create trikh class action
+    * [x] Constructor
+    * [x] Destructor
+    * [x] goalCB
+    * [x] preemptCB
+    * [x] getNextObstacle
+    * [x] obstacleCB (1/2 of #3)
+    * [x] travelCB ( 2/2 of #3 and 1/1 #4)
+3. [x] Implement reactive actions.
+4. [x] Implement Result-trigging code.
+5. [x] Reshape main function.
 
 ## Trikh_user_interface:
 1. [ ] Create service code body
