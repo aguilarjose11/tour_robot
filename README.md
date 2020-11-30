@@ -66,3 +66,49 @@ The class uses a 3 bit flag called *stimulus* which is a private variable. This 
 For the creating of the world, the robot must be able to detect obstacles before encountering them by the bumper.
 For this is that we have decided to make use of obstacle-detection software such as OpenCV to detect obstacles
 and categorize them as needed.
+
+
+Development:
+============
+
+*November 23 update*
+
+## Trikh_grid_exec:
+1. [x] Update to use *grid_deltaAction* action from SetBool.
+2. [x] Reshape body of main to work as an action
+  * [x] Create trikh class action
+    * [x] Constructor
+    * [x] Destructor
+    * [x] goalCB
+    * [x] preemptCB
+    * [x] getNextObstacle
+    * [x] obstacleCB (1/2 of #3)
+    * [x] travelCB ( 2/2 of #3 and 1/1 #4)
+3. [x] Implement reactive actions.
+4. [x] Implement Result-trigging code.
+5. [x] Reshape main function.
+
+## Trikh_user_interface:
+1. [ ] Create service code body
+2. [ ] create comunication chanel with trikh_user_teleop called new_user_goal which is a service that will update a data structure containing the current goal. Designed to override any current goals. set a global boolean to tell wether we have a new goal (is_new_goal)
+3. [ ] If the service draft_new_plan is called, return the is_new_goal boolean and set it to false afterwards.
+
+## Trikh_user_teleop:
+1. [ ] create regular node body of code.
+2. [ ] print input interface message explaining how the interface will accept input (x, y)
+3. [ ] Start ros loop where we check for any input from the user
+4. [ ] when we get some we check that it conforms the input standards.
+5. [ ] If input is acceptable, send the new input coordinates by creating a new message *CartesianOdom*
+6. [ ] via service, send the new coordinates with user_goal to trikh_user_interface.
+7. [ ] Set a way for the user to exit the loop (entering ctrl + c for example)
+
+## trikh_odom
+1. [ ] Set up as a regular simple service
+2. [ ] Create body code for a service called current_location
+3. [ ] call back function does following:
+  1. [ ] Get /Odom topic's single message
+  2. [ ] convert the odom data into message CartesianOdom by rounding the odometry data to whole numbers.
+  3. [ ] Send the data back as the response.
+  
+ ## trikh_planner
+ Research!
